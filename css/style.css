@@ -778,7 +778,6 @@ body.touch .arrow {
   background: #141414;
   z-index: 2;
   opacity: 0.85;
-  transition: all 0.3s ease 0s;
 }
 .work-item__bg i {
   font-size: 48px;
