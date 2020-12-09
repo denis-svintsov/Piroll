@@ -78,10 +78,6 @@ body, html {
   font-family: "Nunito Sans", sans-serif;
   background: #fff;
   color: #191919;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
 }
 
 body.lock {
@@ -499,6 +495,7 @@ body.touch .sub-sub-menu__list {
 }
 
 .content-head__text {
+  max-width: 100%;
   font-size: 18px;
   color: #787878;
   max-width: 474px;
@@ -972,6 +969,7 @@ body.touch .sub-sub-menu__list {
 }
 
 .services-item__text {
+  max-width: 100%;
   font-size: 16px;
   line-height: 24px;
   color: #787878;
