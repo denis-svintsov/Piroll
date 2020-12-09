@@ -6,6 +6,452 @@
 	<meta name="theme-color" content="#fff">
 	<link rel="icon" sizes="32x32" href="images/logo.png">
 	<title>Piroll</title>
+	<style>
+		body, html {
+  font-family: "Nunito Sans", sans-serif;
+  background: #fff;
+  color: #191919;
+}
+
+body.lock {
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1185px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  transition: all 0.3s ease 0s;
+}
+.header:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.header.fixed {
+  position: fixed;
+}
+.header.fixed:before {
+  background-color: #fff;
+}
+
+.header.fixed .header__body {
+  height: 60px;
+}
+@media (max-width: 767px) {
+  .header.fixed .header__body {
+    height: 40px;
+  }
+}
+
+.header__body {
+  height: 100px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .header__body {
+    height: 40px;
+  }
+}
+
+.header__logo {
+  position: relative;
+  z-index: 3;
+}
+
+.header__burger {
+  display: none;
+}
+
+body.touch .header__burger {
+  display: block;
+  position: relative;
+  z-index: 3;
+  width: 30px;
+  height: 20px;
+}
+body.touch .header__burger:before, body.touch .header__burger:after {
+  content: "";
+  background-color: #0c0c0c;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 0;
+}
+body.touch .header__burger:before {
+  top: 0;
+}
+body.touch .header__burger:after {
+  bottom: 0;
+}
+body.touch .header__burger span {
+  position: absolute;
+  background-color: #0c0c0c;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  top: 9px;
+  transition: all 0.3s ease 0s;
+}
+body.touch .header__burger.active:before {
+  transform: rotate(45deg);
+  top: 9px;
+  transition: all 0.3s ease 0s;
+}
+body.touch .header__burger.active:after {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+body.touch .header__burger.active span {
+  transform: scale(0);
+}
+
+body.touch .header__menu {
+  position: fixed;
+  overflow: auto;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e9e9e9;
+  padding: 80px 10px 80px 10px;
+  transition: all 0.3s ease 0s;
+}
+body.touch .header__menu.active {
+  top: 0;
+}
+
+.menu__list {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.menu__list > li {
+  position: relative;
+  margin: 0 0 0 30px;
+}
+
+body.touch .menu__list {
+  display: block;
+}
+body.touch .menu__list > li {
+  margin: 0 0 20px 0;
+}
+
+.menu a.parent {
+  margin: 0 30px 0 0;
+}
+
+.menu__link {
+  color: #191919;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+@media (max-width: 364px) {
+  .menu__link {
+    font-size: 36px;
+    line-height: 46px;
+  }
+}
+
+body.touch .menu__link {
+  font-size: 42px;
+  line-height: 52px;
+}
+
+.menu__link_active {
+  color: #3bcfcb;
+}
+
+.menu a:hover {
+  color: #3bcfcb;
+}
+
+.menu__link_active:hover {
+  color: #13eae3 !important;
+}
+
+.sub-menu__list {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  padding: 27px 0 0 0;
+  min-width: 150px;
+}
+
+.sub-menu__list > li {
+  position: relative;
+  background: #191919;
+}
+
+.sub-menu__link {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  display: inline-block;
+  color: #fff;
+  padding: 10px;
+}
+
+.sub-sub-menu__list {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 150px;
+}
+.sub-sub-menu__list li {
+  background: #191919;
+}
+
+body.touch .sub-sub-menu__list li {
+  background: #fff;
+}
+
+.sub-sub-menu__link {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  display: inline-block;
+  color: #fff;
+  padding: 10px;
+}
+
+body.touch .sub-sub-menu__link {
+  color: #191919;
+}
+
+.arrow.active {
+  transform: rotate(180deg);
+}
+
+.arrow {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #191919;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
+.sub-menu__arrow {
+  display: block;
+  border-right: none;
+  top: 5px;
+  right: 10px;
+  border-left: 8px solid #fff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+body.mouse .menu__list > li:hover .sub-menu__list {
+  display: block;
+}
+
+body.mouse .sub-menu__list > li:hover .sub-sub-menu__list {
+  display: block;
+}
+
+body.mouse .sub-menu__arrow {
+  border-right: none;
+  top: 10px;
+  border-left: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+body.touch .sub-menu__list.open {
+  display: block;
+}
+
+body.touch .sub-sub-menu__list.open {
+  display: block;
+}
+
+body.touch .arrow {
+  display: block;
+}
+
+body.touch .menu__arrow {
+  top: 5px;
+  border-top: 25px solid #191919;
+  border-right: 25px solid transparent;
+  border-left: 25px solid transparent;
+}
+body.touch .sub-menu__arrow {
+  top: 5px;
+  border-top: 25px solid #fff;
+  border-right: 25px solid transparent;
+  border-left: 25px solid transparent;
+  border-bottom: none;
+}
+body.touch .sub-menu__list {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+body.touch .sub-menu__link {
+  font-size: 40px;
+}
+body.touch .sub-sub-menu__link {
+  font-size: 38px;
+}
+body.touch .sub-sub-menu__list {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  .menu__arrow {
+    top: 5px;
+    border-top: 25px solid #191919;
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+  }
+
+  .sub-menu__arrow {
+    top: 5px;
+    border-top: 25px solid #fff;
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+    border-bottom: none;
+  }
+
+  .sub-menu__list {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .sub-menu__link {
+    font-size: 40px;
+  }
+
+  .sub-sub-menu__link {
+    font-size: 38px;
+  }
+
+  .sub-sub-menu__list {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+.content {
+  flex: 1 1 auto;
+}
+
+.content-head {
+  position: relative;
+  padding: 120px 0 0 0;
+}
+@media (max-width: 767px) {
+  .content-head {
+    padding: 50px 0 0 0;
+  }
+}
+
+.content-head__row {
+  display: flex;
+  justify-content: flex-end;
+}
+@media (max-width: 767px) {
+  .content-head__row {
+    flex-direction: column;
+  }
+}
+
+.content-head__column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-head__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.content-head__image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.content-head__body {
+  z-index: 1;
+  padding: 120px 0;
+}
+@media (max-width: 374px) {
+  .content-head__body {
+    padding: 60px 0;
+  }
+}
+
+.content-head__title {
+  font-size: 38px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  margin: 0 0 37px 0;
+}
+
+.content-head__text {
+  max-width: 100%;
+  font-size: 18px;
+  color: #787878;
+  max-width: 474px;
+  margin: 0 0 40px 0;
+}
+@media (max-width: 1190px) {
+  .content-head__text {
+    color: #191919;
+  }
+}
+
+.content-head__link {
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline-block;
+  background: #10c9c3;
+  line-height: 55px;
+  padding: 0 45px;
+}
+	</style>
 	<!-- Fonts -->
 	<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
 	<!-- Optional - Adds useful class to manipulate icon font display -->
