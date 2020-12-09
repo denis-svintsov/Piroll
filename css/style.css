@@ -78,6 +78,10 @@ body, html {
   font-family: "Nunito Sans", sans-serif;
   background: #fff;
   color: #191919;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 body.lock {
