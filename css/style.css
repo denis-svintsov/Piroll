@@ -556,6 +556,7 @@ body.touch .sub-sub-menu__list {
 }
 
 .about__text {
+  max-width: 100%;
   text-align: center;
   font-size: 16px;
   color: #787878;
