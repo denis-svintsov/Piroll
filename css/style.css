@@ -254,6 +254,12 @@ body.touch .menu__link {
     line-height: 46px;
   }
 }
+@media (max-width: 319px) {
+  body.touch .menu__link {
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
 
 .menu__link_active {
   color: #3bcfcb;
