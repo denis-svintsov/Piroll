@@ -21,7 +21,7 @@ $(document).ready(function () {
 		body.style.paddingRight = '0px';
 	});
 
-	$('.contact-form__btn').click(function (event) {
+	$('.need-project-form__btn').click(function (event) {
 		$('.popup').removeClass('open');
 		$('body').removeClass('lock-popup');
 		body.style.paddingRight = '0px';
