@@ -10,14 +10,14 @@ $(document).ready(function () {
 	const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
 
 	$('.popup-link').click(function (event) {
-		$('.popup').toggleClass('open');
-		$('body').toggleClass('lock-popup');
+		$('.popup').addClass('open');
+		$('body').addClass('lock-popup');
 		body.style.paddingRight = lockPaddingValue;
 	});
 
 	$('.popup-close').click(function (event) {
-		$('.popup').toggleClass('open');
-		$('body').toggleClass('lock-popup');
+		$('.popup').removeClass('open');
+		$('body').removeClass('lock-popup');
 		body.style.paddingRight = '0px';
 	});
 
